@@ -1,7 +1,6 @@
 import streamlit as st
 from ai.tutor import get_step_by_step_solution
 
-# Sample math problems for users to try - 3 carefully selected problems
 SAMPLE_PROBLEMS = [
     "Solve for x: 2x + 5 = 13",
     "Find the area of a circle with radius 7 cm", 
