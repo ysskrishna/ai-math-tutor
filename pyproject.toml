@@ -1,12 +1,48 @@
 [project]
 name = "ai-math-tutor"
 version = "0.1.0"
-description = "Add your description here"
+description = "An intelligent AI-powered math tutor that provides step-by-step solutions to mathematical problems using OpenAI's GPT-4"
 readme = "README.md"
 requires-python = ">=3.11"
+authors = [
+    {name = "Y. Siva Sai Krishna", email = "sivasaikrishnassk@gmail.com"}
+]
+license = {text = "MIT"}
+keywords = [
+    "ai", 
+    "math", 
+    "tutor", 
+    "education", 
+    "openai", 
+    "streamlit",
+    "langchain",
+    "langsmith",
+    "observability",
+    "structured-output",
+    "pydantic",
+    "python",
+    "open-source",
+    "ysskrishna"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Education",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
 dependencies = [
     "langchain-openai>=0.3.30",
     "pydantic>=2.9.2",
     "python-dotenv>=1.1.1",
     "streamlit>=1.47.1",
 ]
+
+[project.urls]
+Homepage = "https://github.com/ysskrishna/ai-math-tutor"
+Repository = "https://github.com/ysskrishna/ai-math-tutor.git"
+Documentation = "https://github.com/ysskrishna/ai-math-tutor#readme"
+Issues = "https://github.com/ysskrishna/ai-math-tutor/issues"
