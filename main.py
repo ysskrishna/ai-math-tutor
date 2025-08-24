@@ -33,19 +33,67 @@ def create_footer():
         unsafe_allow_html=True
     )
 
+def display_solution(solution):
+    st.markdown("---")
+    st.subheader("Solution")
+    
+    for i, step in enumerate(solution.steps, 1):
+        st.markdown(f"**Step {i}:** {step.explanation}")
+        
+        st.code(step.output, language="text")
+        
+        if i < len(solution.steps):
+            st.markdown("")
+    
+    st.markdown("---")
+    st.success(f"**🎯 Final Answer:** {solution.final_answer}")
+
+def handle_problem_input():
+    problem = st.text_area(
+        "Enter your math problem to get a step-by-step solution:", 
+        value=st.session_state.problem,
+        height=150,
+        placeholder="Example: Solve for x: 2x + 5 = 13",
+        key="problem_input"
+    )
+    
+    # Button row
+    button_col1, button_col2, button_col3 = st.columns([1, 1, 2])
+    
+    with button_col1:
+        if st.button("Submit", use_container_width=True):
+            if problem.strip():
+                st.session_state.problem = problem
+                with st.spinner("Let me put on my thinking cap and solve this mathematical mystery..."):
+                    try:
+                        st.session_state.solution = get_step_by_step_solution(problem)
+                    except Exception as e:
+                        st.session_state.solution = f"Error: {str(e)}"
+            else:
+                st.error("Please enter a math problem first.")
+    
+    with button_col2:
+        if st.button("Reset", use_container_width=True):
+            st.session_state.problem = ""
+            st.session_state.solution = None
+            st.rerun()
+    
+    return problem
+
 def main():
     st.set_page_config(page_title="AI Math Tutor", layout="wide")
     st.title("AI Math Tutor")
 
-    problem = st.text_area("Enter your math problem to get a step-by-step solution:", key="problem")
-    if st.button("Submit"):
-        if problem:
-            solution = get_step_by_step_solution(problem)
-            st.write(solution)
-        else:
-            st.error("Please enter a math problem first.")
-    
+    st.session_state.setdefault('solution', None)
+    st.session_state.setdefault('problem', "")
 
+    handle_problem_input()
+
+    # Display solution if available
+    if st.session_state.solution:
+        display_solution(st.session_state.solution)
+
+    # Create footer
     create_footer()
 
 if __name__ == "__main__":
