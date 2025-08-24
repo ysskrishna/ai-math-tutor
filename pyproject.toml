@@ -1,7 +1,7 @@
 [project]
 name = "ai-math-tutor"
-version = "0.1.0"
-description = "An intelligent AI-powered math tutor that provides step-by-step solutions to mathematical problems using OpenAI's GPT-4"
+version = "1.0.0"
+description = "An intelligent AI-Powered Math Tutor that delivers clear, step-by-step solutions to mathematical problems. Built with Streamlit for an intuitive and interactive interface, it integrates LangChain for seamless LLM workflows, leverages LangSmith for advanced observability and tracing, and ensures reliability with Pydantic’s type-safe data models."
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [
@@ -25,14 +25,23 @@ keywords = [
     "ysskrishna"
 ]
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Education",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Other Audience",
     "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "Topic :: Education",
-    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Linguistic",
+    "Environment :: Web Environment",
+    "Framework :: Streamlit",
+    "Natural Language :: English",
+    "Typing :: Typed",
 ]
 dependencies = [
     "langchain-openai>=0.3.30",
