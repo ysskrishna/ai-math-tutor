@@ -1,6 +1,27 @@
 import streamlit as st
 from ai.tutor import get_step_by_step_solution
 
+# Sample math problems for users to try - 3 carefully selected problems
+SAMPLE_PROBLEMS = [
+    "Solve for x: 2x + 5 = 13",
+    "Find the area of a circle with radius 7 cm", 
+    "A train travels 240 miles in 4 hours. What is its average speed?"
+]
+
+def display_sample_questions():
+    with st.expander("Try Sample Problems", expanded=False):
+        st.markdown("Click on any problem below to auto-populate the input field:")
+        
+        for i, problem in enumerate(SAMPLE_PROBLEMS):
+            if st.button(
+                f"📝 {problem}", 
+                key=f"sample_{i}",
+                use_container_width=True,
+                help="Click to use this sample problem"
+            ):
+                st.session_state.problem_input = problem
+                st.rerun()
+
 def create_footer():
     st.markdown("---")
     st.markdown(
@@ -51,7 +72,6 @@ def display_solution(solution):
 def handle_problem_input():
     problem = st.text_area(
         "Enter your math problem to get a step-by-step solution:", 
-        value=st.session_state.problem,
         height=150,
         placeholder="Example: Solve for x: 2x + 5 = 13",
         key="problem_input"
@@ -63,7 +83,6 @@ def handle_problem_input():
     with button_col1:
         if st.button("Submit", use_container_width=True):
             if problem.strip():
-                st.session_state.problem = problem
                 with st.spinner("Let me put on my thinking cap and solve this mathematical mystery..."):
                     try:
                         st.session_state.solution = get_step_by_step_solution(problem)
@@ -74,8 +93,9 @@ def handle_problem_input():
     
     with button_col2:
         if st.button("Reset", use_container_width=True):
-            st.session_state.problem = ""
             st.session_state.solution = None
+            if 'problem_input' in st.session_state:
+                del st.session_state.problem_input
             st.rerun()
     
     return problem
@@ -85,7 +105,9 @@ def main():
     st.title("AI Math Tutor")
 
     st.session_state.setdefault('solution', None)
-    st.session_state.setdefault('problem', "")
+    st.session_state.setdefault('problem_input', "")
+
+    display_sample_questions()
 
     handle_problem_input()
 
