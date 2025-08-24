@@ -1,4 +1,4 @@
-from models.models import MathReasoning
+from core.models import MathReasoning
 from ai.client import get_openai_client
 from ai.prompts import SYSTEM_PROMPT, USER_PROMPT
 from langchain_core.messages import SystemMessage, HumanMessage
